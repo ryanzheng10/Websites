@@ -1,0 +1,83 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+img.background{
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+
+    position: fixed;
+    z-index: -1;
+}
+.container{
+    height: 100vh;
+    width: 100vw;
+   
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+}
+
+.container2{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.container .text{
+    background-color: rgba(0, 0, 0, 0.48);
+    border-radius: 20px;
+
+    margin: 0;
+    padding: 5%;
+    /*instead of 100% + 15% + 15%, its x + 15% + 15% = 100%*/
+
+    color: white;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5rem;
+
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+    
+}
+
+.container2 .circle{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+
+
+    border-radius: 18px;
+    border: black 1px solid;
+
+    cursor: pointer;
+
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+}
+
+.container2 .circle p{
+    position: absolute;
+
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    bottom: -16px;
+    right: 8px;
+
+    color:rgb(29, 191, 255);
+
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+}
