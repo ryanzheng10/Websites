@@ -1,0 +1,237 @@
+body{
+  background-color: rgb(233, 233, 255);
+  color: rgb(44, 44, 44);
+  font-family: "open sans", sans-serif;
+
+  /*turn body into flexbox*/
+  display: flex;
+  flex-direction: column;
+  /*no noticeable change because h1 and p are inline so centering inline elements don't do anything */
+  justify-content: center;
+  align-items: center;
+}
+h1{
+  color: rgb(83, 49, 156);
+
+  /*added this myself, when you shrink way down, the title will be centered even when it wraps*/
+  text-align: center;
+}
+.container{
+  background-color: white;
+
+  /*full size until you shrink past a certain point */
+  max-width: 900px;
+  width: 100%;
+
+  /*turn into flexbox*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /*rounding corners*/
+  border-radius: 20px;
+
+  padding: 0 64px 64px 64px;
+
+  /* used as parent container for line position*/
+  position: relative;
+}
+
+.tabs{
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  justify-content:space-around;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: rgb(200, 175, 255);
+
+  margin: 0 0 32px 0;
+  padding: 16px;
+}
+
+.tabs p{
+  padding: 8px;
+}
+
+.tabs p:hover{
+  color: rgb(83, 49, 156);
+  cursor: pointer;
+}
+
+.tabs p.active{
+  /*a p element with class active*/
+  color: rgb(83, 49, 156);
+
+  /*acts as parent container for the underline under tabs */
+  position: relative; 
+}
+
+.line{
+  height: 3px;
+  width: 100%;
+  background-color: rgb(231, 231, 231);
+
+  /* now is removed from doc flow and relative to .container*/
+  position: absolute; 
+  top: 98px;
+
+}
+
+.tabs .active::before { /* we will learn about this psudoelement later */
+  /* this way when you set Enterprise to active, the line will move with it*/
+  /* the line breaks if we use a span inside of Team and decorate span because the parent container is Team, we have to somehow move the parent container, so this line should be created with the ::before psudo element*/
+
+  content: "";
+  width: 200%;
+  height: 5px;
+  background-color: rgb(83, 49, 156);
+  position: absolute;
+  bottom: -32px;
+  z-index: 2;
+
+  /* to artificially center it*/
+  left: -50%;
+
+  border-radius: 10px;;
+
+}
+
+
+.toggle-wrapper{
+  display: flex;
+}
+
+.toggle-wrapper img{
+  height: 40px;
+  margin: 0 16px;
+}
+
+.toggle{
+  background-color: rgb(83, 49, 156);
+  height: 32px;
+  width: 140px;
+  border-radius: 20px;
+  
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px 0 16px;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+
+  /* getting it to fit in this dimension (140px) without having to do math*/
+  /* was 140px but then with all the margins and padding became 172, now we want it back to 140*/
+  box-sizing: border-box;
+
+}
+
+.toggle span:first-of-type{
+  color: white;
+}
+
+.toggle span + span{
+  /* span + span selects a span that immediately proceeds a span */
+  background-color: white;
+  color: rgb(83, 49, 156);
+  padding: 4px 16px;
+  border-radius: 20px;
+}
+
+.sessions-card{
+  background-color: rgb(250, 247, 255);
+  text-align: center;
+  padding: 32px;
+  width: 50%;
+  text-transform: uppercase;
+  
+  margin: 60px 0;
+  border-radius: 10px;
+}
+
+.sessions-card p{
+  color: rgb(44, 44, 44);
+  font-size: 12px;
+  font-weight: bold;
+  margin: 16px 0 0 0;
+}
+
+.sessions-card .number{
+  color: rgb(83, 49, 156);
+  font-size: 54px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.description{
+  line-height: 32px;
+  margin: 16px 0 32px 0;
+}
+
+.slider{
+  width: 100%;
+  position: relative;
+}
+.slider .bar{
+  width: 100%;
+  height: 16px;
+  background-color: rgb(248, 248, 248);
+  border: solid 1px rgb(210, 210, 210);
+  border-radius: 20px;
+}
+
+.slider .progress{
+  width: 31%;
+  height: 18px;
+  background-image: linear-gradient(
+    90deg, 
+    rgba(2,0,36,1) 0%,
+    rgba(53, 10, 74, 1) 36%,
+    rgba(83, 49, 156, 1) 100%
+  );
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+  /*the progess isn't right on top of the slider*/
+  /*
+  margin-left: -1px;
+  margin-top: -1px;*/
+
+  /* or turn slider to a relative flexbox. not the parent element is bar but since bar is not a flexbox, this element will be relative to slider because slider is the closest parent that is a flexbox*/
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.slider .point{
+  height: 24px;
+  width: 24px;
+  background-color: rgb(83, 49, 156);
+  border-radius: 50%;
+  position: absolute;
+  /* if we let it to 31% like the bar progress, the left side of the circle will be at 31, but we want the center to be at 31*/
+  left: 29%;
+  top: -5px;
+
+  border: 2px solid white;
+  transition: transform 0.25s ease;
+}
+
+.slider .point:hover{
+  cursor: pointer;
+  transform: scale(1.15);
+}
+
+.slider .scale ul{
+  /*REMEMEBER LIST-STYLE: NONE;*/
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  font-weight: bold;
+  color: rgb(166, 166, 166);
+}
