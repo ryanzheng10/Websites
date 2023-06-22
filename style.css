@@ -1,83 +1,208 @@
 body{
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
-img.background{
+
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100vw;
-    object-fit: cover;
+    min-height: 600px;
+}
 
-    position: fixed;
+.container .background-image{
+    object-fit: cover;
+    width: 100vw;
+    height: 100%; /* gets rid of issue of when you have scrunch screen where the scroll wheel appears
+    and then the background ends when you scroll down*/
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: -1;
 }
-.container{
-    height: 100vh;
-    width: 100vw;
-   
-    /* background-color: yellow; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    box-sizing: border-box;
-
-}
-
-.container2{
+.container-for-cal{
+    border-radius: 50px;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
-.container .text{
-    background-color: rgba(0, 0, 0, 0.48);
-    border-radius: 20px;
 
-    margin: 0;
-    padding: 5%;
-    /*instead of 100% + 15% + 15%, its x + 15% + 15% = 100%*/
-
-    color: white;
-    font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.5rem;
-
+.container .calendar{
     position: relative;
-
-    height: 100%;
-    width: 100%;
-    
-}
-
-.container2 .circle{
-    width: 30px;
-    height: 30px;
     background-color: white;
-
-
-    border-radius: 18px;
-    border: black 1px solid;
-
-    cursor: pointer;
-
-    position: absolute;
-    bottom: -10px;
-    right: -10px;
+    width: 800px;
+    height: 600px;
+    border-radius: 50px;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 
-.container2 .circle p{
-    position: absolute;
+.container .container-for-cal:hover{
+    box-shadow: 12px 12px 25px black;
+    transform: scale(1.05);
+}
 
+
+.month{
+    background-color: rgb(86, 145, 255);
+    height: 15%;
+
+    /*make words center*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: pacifico;
+    font-size: 40px;
+    color: white;
+    /* -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black; */
+}
+
+.dates-grid{
+    padding: 0px 20px 35px 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 85%;
+
+    background-color: rgb(255, 255, 255);
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr repeat(6, 2fr);
+    gap: 5px;
+}
+
+.dates-grid .dow{
+    text-align: center;
+    font-family: poppins;
+    font-size: 35px;
+    color: rgb(119, 119, 119);
+}
+
+.date-empty{
+    flex: 1;
+    /*this does nothing, just gets rid of yellow squiggly*/
+}
+
+.date{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: poppins;
+    font-size: 30px;
+    
+}
+
+.date{
     text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    bottom: -16px;
-    right: 8px;
+    color: black;
+    transition: all 0.125s ease;
+}
 
-    color:rgb(29, 191, 255);
+.accent{
+    color:rgb(86, 145, 255);
+}
 
-    -webkit-text-stroke-width: 0.5px;
-    -webkit-text-stroke-color: black;
+a.date:hover{
+    transform: scale(1.75);
+    color:rgb(155, 153, 247);
+}
+
+a.date:active{
+    opacity: 0.5;
+}
+
+.container-for-cal .question-mark-container{
+    position: absolute;
+    top: -22px;
+    right: -22px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    }
+
+.question-mark-container .tooltip-img{
+    height: 50px;
+    width: 50px;
+    background: white;
+    padding: 15px;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.question-mark-container .tooltip{
+    opacity: 0;
+    background-color: white;
+    padding: 15px;
+    margin-right: 18px;
+    border-radius: 10px;
+    width: 175px;
+    display: inline-block;
+
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: black;
+
+    /* these two have to be used or else it won't work*/
+    position: absolute;
+    pointer-events: none;
+
+    transition: opacity 0.5s ease;
+
+    right: 75px;
+
+
+}
+
+.container-for-cal .question-mark-container:hover .tooltip{
+    opacity: 1;
+}
+
+@media only screen and (max-width: 900px){
+    .container .calendar{
+        width: 400px;
+        height: 300px;
+        border-radius: 25px;
+    }
+
+    .container .container-for-cal:hover{
+        box-shadow: 8px 8px 25px black;
+    }
+
+    .month{
+        font-size: 20px;
+        /* -webkit-text-stroke-width: 1px; */
+    }
+
+    .dates-grid{
+        padding: 0px 10px 18px 10px;
+        gap: 1px;
+    }
+
+    .dates-grid .dow{
+        font-size: 25px;
+        color: rgb(119, 119, 119);
+    }
+
+    .date{
+        font-size: 22px;
+    }
+
+    a.date:hover{
+        transform: scale(1.5);
+    }
+    .question-mark-container .tooltip-img{
+        width: 25px;
+        height: 25px;
+    }
+    .question-mark-container .tooltip{
+        top: -110px;
+        right: -92px;
+    }
 }
