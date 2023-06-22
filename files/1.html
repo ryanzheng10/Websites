@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Night</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;600;700;800;900&family=Pacifico&family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+
+
+    <style>
+
+        body{
+            background-color: black;
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container img.background{
+            object-fit: cover;
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: 100vw;
+            z-index: -1;
+        }
+
+        .menu{
+            width: 600px;
+            height: 1200px;
+            background-color: white;
+            margin-top: 100px;
+        }
+        .title-container{
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            padding-top: 10px;
+        }
+
+        .title{
+            
+            display: inline-block;
+            font-family: "Frank Ruhl Libre";
+            font-size: 85px;
+        }
+        .title-side{
+            display: inline-block;
+            transform: rotate(90deg);
+            font-family: "Frank Ruhl Libre";
+            font-size: 25px;
+            margin: 0;
+            padding-top: 45px;
+
+            
+
+        }
+        img.cocktail{
+            height: 100px;
+            width: 100px;
+            object-fit: contain;
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            top: 12px;
+            z-index: 0;
+        }
+        .break{
+            margin-top: 0px;
+            width: 85%;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+        .grid{
+            padding: 20px;
+            height: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-areas: 
+            "a a b b"
+            "a a b b"
+            "c c d d"
+            "c c d d"
+            "e e e f"
+            "e e e f";
+        }
+        .a{
+            padding: 10px;
+            grid-area: a;
+        }
+
+        .a img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid black;
+            object-position: 50% 80%;
+        }
+
+        .b{
+            padding: 10px;
+            grid-area: b;
+        }
+
+        .c{
+            padding: 10px;
+            grid-area: c;
+        }
+
+        .d{
+            padding: 10px;
+            grid-area: d;
+        }
+
+        .d img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid black;
+            object-position: 50% 80%;
+        }
+
+
+        .e{
+            padding: 10px;
+            grid-area: e;
+        }
+
+        .e img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid black;
+            object-position: 50% 80%;
+        }
+
+        .f{
+            padding: 10px;
+            grid-area: f;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="background" src="images/bar.jpg" alt="">
+
+        <div class="menu">
+            <div class="title-container">
+                <div class="title">COCKTAIL</div>
+                <div class="title-side">NIGHT</div>
+                <img class="cocktail" src="images/kisspng-cocktail-margarita-distilled-beverage-bloody-mary-cocktail-5a8aecd717ffe0.5034972015190540390983.png" alt="">
+            </div>
+            <hr class="break">
+
+            <div class="grid">
+                <div class="a">
+                    <img src="images/salted-caramel-smoothie-3-1024x1536.jpg" alt="">
+                </div>
+
+                <div class="b">
+                    <h3>Salted Caramel Shake</h3>
+                    <p>Caramel Sauce &#x2022 Frozen Banana &#x2022 Whole Milk </p>
+                    <p>Blend the three ingredients together. Decorate glass if you want. Variations include whip cream, greek yogurt, cacao nibs, and ice cream.</p>
+                </div>
+
+                <div class="d">
+                    <img src="images/4538360_20Iced20Caramel20Macchiato20Photo20by20Lela20650x465-21dd58b096bc43ce8452ad1e8becaed4.webp" alt="">
+                </div>
+
+                <div class="c">
+                    <h3>Classic Caramel Macchiato</h3>
+                    <p>Caramel Sauce &#x2022 Vanilla Flavored Syrup &#x2022 Whole Milk </p>
+                    <p>Blend the three ingredients together. Decorate glass if you want. Variations include whip cream, greek yogurt, cacao nibs, and ice cream.</p>
+                </div>
+
+                <div class="e">
+                    <img src="images/strawberry-yogurt-smoothie-image-hero.jpg" alt="">
+                </div>
+
+                <div class="f">
+                    <h3>Strawberry Yogurt Drink</h3>
+                    <p>Frozen Strawberries &#x2022 Whole Milk &#x2022 Vanilla Yogurt &#x2022 Maple Syrup </p>
+                    <p>Throw them in a blender and done.</p>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
