@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+
+    <link rel="stylesheet" href="index.css">
+
+    <!-- google fonts Libre Baskerville and Roboto Slab-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- import latex -->
+    <script async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <!-- colored codeblocks -->
+    <!-- https://www.youtube.com/watch?v=Y0ChQhhRKHM&ab_channel=FreeWebToolkit -->
+    <!-- https://www.freewebtoolkit.com/html-encode -->
+    <!-- https://highlightjs.org/#usage -->
+    <!-- https://github.com/highlightjs/highlight.js#importing-the-library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+</head>
+<body>
+    <div id="menu">
+        <div id="back-button">
+            <a href="#">←</a>
+        </div>
+        <input id="toggle" type="checkbox" checked>
+    </div>
+    <div class="page">
+        <h1 id="title">Arrays</h1>
+        <hr>
+
+        <h2>1. Intro To Arrays</h2>
+        <h3>1.1 Arrays</h3>
+        <p>
+            Arrays are one of the most fundamental data structures in Computer Sciene. Arrays store data sequentially in memory, and is often index using square brackets.
+        </p>
+        <h3>1.2 Array Length</h3>
+        <p>
+            Note that some languages have static arrays while other languages have dynamic arrays. Languages such as Java and C have a fixed array size, i.e., once an array is created, the size of the array cannot change unless you create a new array with the desired size and copy all the data from the last array onto the new array. This would make arrays in Java and C static. Python Lists and JavaScript arrays are of variable length and you can push and pop elements into and out of the array and the size of the array will change accordingly, thus making their arrays dynamic. Note that different languages have different ways of accessing the length of an array: arr.length (Java), len(list) (Python), int arrayLength = sizeof(arr) / sizeof(arr[0]) (C), these are the most common syntaxes.
+        </p>
+        <p>
+            I will discuss an array's capacity and size here in order to set up the context for a discussion about it later. A static array's capacity is fixed size of the array during creation. An array's capacity is dynamic and changes as we add and remove elements.
+        </p>
+        <pre>
+<code class="language-java java invert codeblock">
+    class HelloWorld {
+        public static void main(String[] args) {
+            int[] arr = new int[5];
+            int indexOfLastElement = -1;
+            /*right now, the array is created with capacity of 5*/
+            /*and the size of the array is 0 beause we have not added
+              any elements to it*/
+
+            /* if we want to add an element (5):*/
+            arr[++indexOfLastElement] = 5;
+            /* now the capacity is still at 5, and the size of
+            the array is at 1*/
+            /* array literal: [5, null, null, null, null]*/
+
+            /* if we want to add an element (6):*/
+            arr[++indexOfLastElement] = 6;
+            /* now the capacity is still at 5, and the size of
+            the array is at 1*/
+            /* array literal: [5, 6, null, null, null]*/
+
+            arr[++indexOfLastElement] = 7;
+            arr[++indexOfLastElement] = 8;
+            arr[++indexOfLastElement] = 8;
+            /* array literal: [5, 6, 7, 8, 9]*/
+            /* capacity is 5 and size is 5 */
+            /* at this point, any additional inserts
+            require the array to be resized*/
+        }
+    }
+</code>
+        </pre>
+        <h3>1.3 Indexing</h3>
+        <p>
+            Arrays are an ordered list. This means that each element is associated with an index. An array of size \(n\) will have \(n\) integer indices ranging from 0 to \(n-1\). To access (or to change) elements stored in index \(i\), you often use the bracket notation:
+        </p>
+        <p class="latex-block">
+            \[ \text{arr[i]}  \]
+        </p>
+
+        <h2>2. Static Arrays</h2>
+        <h3>2.1 Dictionary Operations and Time Complexity</h3>
+        <h4>2.1.1 Search</h4>
+        <p>
+            Given the array contains \(n\) elements. If the list is unsorted, then you use sequential search:
+        </p>
+        <ul>
+            <li>Best Case: element you're searching for is the
+            first index, which is 1 constant-cost operation, which is \(\Theta\)(1).
+            </li>
+            <li>Worst Case: element you're searching for is the last
+            element in the array: \(n\) constant-cost searches, thus \(\Theta\)(n).
+            </li>
+            <li>
+            Average Case: Assuming that all elements in array have equal chance of getting searched, the average search will take this many constant-cost operations (n represents the size of the list and the summation at i is the cost to search the \(i^{th}\) element):
+            <p class="latex-block">
+                \[     \frac{1}{n}\sum_{i=1}^{n} i = \frac{1}{n} \frac{n(n+1)}{2} = \frac{n+1}{2} \text{ operations}\]
+            </p>
+            <p>
+                , thus being \(\Theta\)(n).
+            </p>
+            </li>
+            <!-- \textit{ operations}  \textbf{ operations} for italics and bold-->
+            <!-- Variables in non-italic: \( \mathrm{x} \), \( \mathrm{y} \), \( \mathrm{\alpha} \). -->
+        </ul>
+
+        <p>
+            Given the array contains \(n\) elements. If the list is sorted, you use binary search:
+        </p>
+        <ul>
+            <li>Best Case: you perform binary search and the element you're searching for is the first index you look at, which is 1 constant-cost operation, which is \(\Theta\)(1).
+            </li>
+            <li>Worst Case: you perform binary search and the element you're searching for is the last element in the binary search: \(\lg{n}\) searched indices (with each index search being a constant-cost operation), thus \(\Theta\)(\(\lg{n}\)).
+            </li>
+            <li>Average Case: analysis
+                <div class="container-centered-and-vertical-outter">
+                    <div class="container-centered-and-vertical">
+                        <div class="image-container">
+                            <img src="Assets/1.jpeg" alt="IMAGE">
+                        </div>
+                        <p>
+                            As we calculate the total search cost for all elements for increasing sizes of \(n\) we can see a pattern emerge. The next addition to the equation as \(n\) increments is \(\lfloor{\lg n}\rfloor+1\). It is very difficult to find a close formula for this pattern, but what we can do is find an overestimate and use that in our analysis.
+                        </p>
+                        <div class="image-container">
+                            <img src="Assets/2.jpeg" alt="IMAGE">
+                        </div>
+                        <p>
+                            From this overestimate, we can derive this summation:
+                        </p>
+                        <p class="latex-block">
+                            \[ \sum_{i=1}^{\lfloor{\lg n}\rfloor+1}{2^{i-1}i}     \]
+                            \[ = \sum_{i=0}^{\lfloor{\lg n}\rfloor}{2^{i}(i+1)}    \]
+                        </p>
+                        <p>
+                            This summation cannot be turned into a function via traditional summation simplification equation, however what we can do is use integrals to find a tight upperbound for this summation:
+                        </p>
+                        <h5><u>THM:</u> For a monotonically increasing function \(f(k)\), this holds true:</h5>
+                        <p class="latex-block">\[  \sum_{k=m}^{n}{f(k)}  \leq  \int_{m}^{n}{f(x)dx}   \]</p>
+                        <p>If we apply this to our equation, the result is:</p>
+                        <p class="latex-block">
+                            \[\sum_{i=0}^{\lfloor{\lg n}\rfloor}{2^{i}(i+1)}  \le  \sum_{i=0}^{\lg n}{2^{i}(i+1)}  \le \int_{0}^{\lg n + 1}{2^x(x+1)dx}     \]
+                        </p>
+                        <p>
+                        When we solve the integral, we get:
+                        </p>
+                        <p class="latex-block">
+                            \[  \frac
+                                    {2n \cdot \ln2 \cdot \lg n + 4n \cdot \ln2 - 2n - \ln2 + 1}
+                                    {\ln^2{2}}
+                            \]
+                        </p>
+                        <p>
+                            This expression represents the upperbound for the aggregate number searches to find every element in a sorted list. To find the average case time complexity, we must divide this expression by the size of the array:
+                        </p>
+                        <p class="latex-block">
+                            \[ \frac{1}{n} \frac
+                            {2n \cdot \ln2 \cdot \lg n + 4n \cdot \ln2 - 2n - \ln2 + 1}
+                            {\ln^2{2}}
+                            \]
+                        </p>
+                        <p>
+                            We can see that the fastest growing term after visually simplifying the equation is \(\lg n\), so:
+                        </p>
+                        <h5>\(\therefore\) the anaysis yields that the average case time complexity of binary search is \(O(\lg n)\). Grant it, this math was a bit useless because all searches have an worst case of \(\ln n\), so even if all searches were worst case, the average case time complexity would still be \(O(\lg n)\).</h5>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <h4>2.1.2 Delete</h4>
+        <p></p>
+        <p>For unsorted lists of size \(n\)</p>
+        <ul>
+            <li>
+                Best/Worst/Average Case:  all \(\Theta\)(\(n\)). You find index via sequential search this is \(\Theta\)(\(n\)), then shift all forward indices down by 1 index, essentially deleting by overwriting the element with its forward neighbor, this step is also \(\Theta\)(\(n\)) (with each index movement being a constant-cost operation), thus the sum of these two steps is \(\Theta\)(\(n\)).
+            </li>
+        </ul>
+        <p>For sorted lists of size \(n\)</p>
+        <ul>
+            <li>
+                Best Case: You perform binary search and find that the element you are deleting is the last element of the list. In this case you can simply remove the element and you have nothing to shift over since there are no elements greater than the target. The operational cost for binary search of the last element of the list will be \(\lg{n}\) thus the time complexity if \(  \Theta{(\lg{n})}  \).
+            </li>
+            <li>
+                Worst Case: You perform binary search and you find that your element to delete is the first element in the array. You shift all indices to the right down by one index, overwriting the index you want to delete with the element in the immediate next index. Binary search would cost \(\lg{n}\) operations and shifting would cost \(n\) operations, the sum of these operations is \(\Theta{(n)}\).
+            </li>
+            <li>
+                Average Case: The average case is \(O(\lg n )\). The proof is above my paygrade (Which is none!). But I will make a note. It's not a formal proof or anything, but we ignore the binary search to find the element, and we focus on the aggregate cost of moving all the index over after deleting each node:
+                <br>
+                <br>
+                <div class="container-centered-and-vertical-outter">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Delete at \(i^{th}\) element</th>
+                                <th scope="col">Resulting number of elements that must be shift down</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>n-1</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>n-2</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>n-3</td>
+                            </tr>
+                            <tr>
+                                <td>...</td>
+                                <td>...</td>
+                            </tr>
+                            <tr>
+                                <td>n</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container-centered-and-vertical-outter">
+                    <div class="container-centered-and-vertical">
+                        <p>
+                            From this table we can come up with this summation for the aggregate number of shifts for the deletino of all elements.
+                        </p>
+                        <p class="latex-block">
+                            \[   \sum_{i=1}^{n}{n-i}       \]
+                            \[  = n^2 - \frac{n(n+1)}{2}      \]
+                        </p>
+                        <p>
+                            Because we are trying to find the average, we have to divide by \(n\):
+                        </p>
+                        <p class="latex-block">
+                            \[  = \frac{1}{n} \left( n^2 - \frac{n(n+1)}{2}   \right)  \]
+                        </p>
+                        <p>from this, we can see that delete average case is \(O(n)\)</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <h4>2.1.3 Insert</h4>
+        <p>For unsorted list of size \(n\)</p>
+        <ul>
+            <li>
+                Best Case: when you add an element to the end of your list of elements via pointer variable that points to the end of the list. (adding to the size and not the capacity as discussed in (1.2)): \(\Theta(1)\)
+            </li>
+            <li>
+                Worst Case: the array's size has reached the capacity and there is no room to add an additional element. You have to create a new array of a greter capacity and move everything to the new array including the element you want to add. \(\Theta(n)\)
+            </li>
+            <li>
+                Average Case: depends on how to resize the array after full. If you add a constant amount of extra space on the new array, it will be \(O(n)\), if you use the doubling method (discussed later) the amortized anaysis cost will be \(O(1)\).
+            </li>
+        </ul>
+
+        <p>For sorted list of size \(n\)</p>
+        <ul>
+            <li>
+                Best Case: You use binary search to find where the inserted element should go and this takes \(\lg n\) operations. Best case is that the element you want to insert belongs at the end of the array, in this case, there will be no shifting. \(\Theta(\lg n)\)
+            </li>
+            <li>
+                Worst Case: You use binary search to find where the inserted element should go and this takes \(\lg n\) operations. Worst case is that the element you want to insert belongs at the beginning of the array, in this case, n items must be shifted over. \(\Theta(n)\)
+            </li>
+            <li>
+                Average Case: (not going to prove) on average you will shift n/2 items so the average case time complexity is \(\Theta(n/2)\), which is \(\Theta(n)\)
+            </li>
+        </ul>
+
+        <h2>3. Dynamic Arrays</h2>
+        <h3>3.1 Intro</h3>
+        <h4>3.1.1 Dynamic Array Search, Delete, Insert</h4>
+        <p>
+            Same as static array. Dynamic arrays use the doubling method as mentinoed earlier for unsorted add, and it will be discussed now.
+        </p>
+
+        <h4>3.1.2 Java and Python</h4>
+        <p>
+            Java has a class called ArrayList and Python has an object called List. The functionality of them are the similar. They are wrappers around a static array and extend the static array's functionality. In these two cases, the capaciy of the internal static array is not viewable via data abstraction. Once too many inserts have been completed and there is no longer space in the internal array to store more elements, a new array of double the capacity will be created and all elements in the original static array will be moved over to the new array. Typically unsorted inserts will be \(O(1)\), but when you insert to a completely full static array, the step of moving elements to a bigger array is \(\Theta(n)\). Note that the operation of allocating memory for the new array is constant time. However, when we keep doubling the array capacity after full, this results in a less and less frequent \(\Theta(n)\) resizing and moving step and the amortized analysis shows that insert will be \(O(1)\). If we decide to add constant extra space instead of doubling, the amortized time for add is (\Theta(n)\).
+        </p>
+
+
+    </div>
+
+    <!-- my link -->
+    <script src="script.js"></script>
+</body>
+</html>
